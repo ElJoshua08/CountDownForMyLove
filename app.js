@@ -1,9 +1,39 @@
+let months = {
+  1: 'January',
+  2: 'February',
+  3: 'March',
+  4: 'April',
+  5: 'May',
+  6: 'June',
+  7: 'July',
+  8: 'August',
+  9: 'September',
+  10: 'October',
+  11: 'November',
+  12: 'December',
+};
+
 function setDate() {
   let $date = document.getElementById('date');
   let currentDate = new Date();
-  let formattedDay = `${currentDate.getDate()}`;
-  let formattedMonth = `${months[currentDate.getMonth() + 1]} `;
-  let formattedYear = `${currentDate.getFullYear()}`;
+  let currentDay = currentDate.getDate();
+  let currentMonth = currentDate.getMonth();
+  let currentYear = currentDate.getFullYear();
+  let targetMonth = currentMonth;
+  let targetYear = currentYear;
+
+  // Si estamos después del día 14 del mes actual, apuntamos al próximo mes
+  if (currentDay > 14) {
+    targetMonth = (currentMonth + 1) % 12; // Aseguramos que estemos dentro de los límites de los meses
+    if (targetMonth === 0) {
+      // Si el próximo mes es enero, incrementamos el año
+      targetYear++;
+    }
+  }
+
+  let formattedDay = '14'; // Siempre establecemos el día 14
+  let formattedMonth = months[targetMonth + 1];
+  let formattedYear = `${targetYear}`;
 
   $date.innerHTML = `
     <div>${formattedDay}</div>
@@ -61,27 +91,58 @@ function createClock() {
   let $hours = document.getElementById('hours');
   let $minutes = document.getElementById('minutes');
   let $seconds = document.getElementById('seconds');
+  let $days = document.getElementById('days');
 
+  setDigits($days, 2);
   setDigits($hours, 2);
   setDigits($minutes, 2);
   setDigits($seconds, 2);
 }
 
 function setHour() {
+  function formatNumber(num) {
+    return num < 10 ? `0${num}` : num;
+  }
+
+  let $days = document.getElementById('days');
   let $hour = document.getElementById('hours');
   let $minutes = document.getElementById('minutes');
   let $seconds = document.getElementById('seconds');
 
-  let currentHour = new Date();
-  let formattedHours = ('0' + currentHour.getHours()).slice(-2);
-  let formattedMinutes = ('0' + currentHour.getMinutes()).slice(-2);
-  let formattedSeconds = ('0' + currentHour.getSeconds()).slice(-2);
+  let currentDate = new Date();
+  let targetDate = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+    14
+  ); // Fecha objetivo: 14 del próximo mes
+  let timeDifference = targetDate - currentDate; // Diferencia de tiempo en milisegundos
 
-  setNumber($hour, formattedHours);
-  setNumber($minutes, formattedMinutes);
-  setNumber($seconds, formattedSeconds);
+  // Convertir la diferencia de tiempo a días, horas, minutos y segundos
+  let remainingDays = formatNumber(
+    Math.floor(timeDifference / (1000 * 60 * 60 * 24))
+  );
+  let remainingHours = formatNumber(
+    Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+  );
+  let remainingMinutes = formatNumber(
+    Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60))
+  );
+  let remainingSeconds = formatNumber(
+    Math.floor((timeDifference % (1000 * 60)) / 1000)
+  );
 
-  console.log(formattedHours, formattedMinutes, formattedSeconds);
+
+  setNumber($days, remainingDays);
+  setNumber($hour, remainingHours);
+  setNumber($minutes, remainingMinutes);
+  setNumber($seconds, remainingSeconds);
+
+  console.log(
+    remainingDays,
+    remainingHours,
+    remainingMinutes,
+    remainingSeconds
+  );
 }
 
 window.addEventListener('load', () => {
