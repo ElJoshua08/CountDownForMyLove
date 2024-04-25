@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  user-select: none;
+  /* cursor: none; */
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  width: 100vw;
+  background-color: #000;
+  height: 100vh;
+  font-family: 'Orbitron', sans-serif;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px) brightness(0.5);
+}
+
+#reloadBackground {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  color: #fff;
+  font-size: 5rem;
+  cursor: pointer;
+}
+
+#reloadBackground:hover {
+  color: #e09f10;
+  transform: rotateZ(180deg);
+}
+
+.container {
+  width: 80%;
+  height: auto;
+  padding: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  font-weight: 900;
+  color: #fff;
+}
+
+.container#date {
+  position: absolute;
+  text-transform: uppercase;
+  top: 2rem;
+  font-size: clamp(3rem, 7vw, 14rem);
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 0 5px #e09f10;
+}
+
+.container#time {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  overflow: hidden;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.container#time .time {
+  border-radius: 1rem;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  backdrop-filter: blur(2px);
+  backdrop-filter: blur(10px);
+}
+
+.container#time .time .digit {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.container#time .separator {
+  font-size: clamp(0.5rem, 7vw, 10rem);
+  color: #e09f10;
+}
+
+.container#time .time .digit .number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1rem, 10vw, 20rem);
+  font-weight: 700;
+  flex-shrink: 0;
+  color: #e6e0e0;
+  text-shadow: 0 0 5px #e09f10;
+}
