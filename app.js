@@ -36,7 +36,7 @@ function setDate() {
   let formattedYear = `${targetYear}`;
 
   $date.innerHTML = `
-    <div>${formattedDay}</div>
+    <div><strong>${formattedDay}</strong></div>
     <div>${formattedMonth}</div>
     <div>${formattedYear}</div>
   `;

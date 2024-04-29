@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap');
 
+:root {
+  --primary: #c91ac9;
+  --primary-light: #e967e9;
+  --secondary: #ff67a1;
+  --primary-text: #fff;
+  --secondary-text: #d1d1d1;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -32,13 +40,13 @@ body {
   position: fixed;
   bottom: 15px;
   right: 15px;
-  color: #fff;
+  color: var(--secondary-text);
   font-size: 5rem;
   cursor: pointer;
 }
 
 #reloadBackground:hover {
-  color: #e09f10;
+  color: var(--secondary);
   transform: rotateZ(180deg);
 }
 
@@ -52,7 +60,7 @@ body {
   justify-content: space-around;
 
   font-weight: 900;
-  color: #fff;
+  color: var(--primary-text);
 }
 
 .container#date {
@@ -61,8 +69,14 @@ body {
   top: 2rem;
   font-size: clamp(3rem, 7vw, 14rem);
   font-weight: 600;
-  color: #fff;
-  text-shadow: 0 0 5px #e09f10;
+  color: var(--secondary-text);
+  text-shadow: 0 0 5px var(--secondary);
+}
+
+.container#date strong {
+  color: var(--primary);
+  font-size: clamp(3rem, 10vw, 14rem);
+  box-shadow: 0 0 15px var(--primary-light);
 }
 
 .container#time {
@@ -94,7 +108,8 @@ body {
 .container#time .separator {
   font-size: clamp(0.5rem, 5.5vw, 10rem);
   align-self: flex-end;
-  color: #e09f10;
+  color: var(--primary);
+  text-shadow: 0 0 5px var(--primary-light);
 }
 
 .container#time .time .digit .number {
@@ -104,6 +119,6 @@ body {
   font-size: clamp(1rem, 8vw, 20rem);
   font-weight: 700;
   flex-shrink: 0;
-  color: #e6e0e0;
-  text-shadow: 0 0 5px #e09f10;
+  color: var(--primary-text);
+  text-shadow: 0 0 5px var(--primary);
 }
